@@ -1,0 +1,19 @@
+{
+  "name": "firebase-data",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/firebase-data/src",
+  "projectType": "library",
+  "tags": [],
+  "targets": {
+    "build": {
+      "executor": "@nx/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/firebase-data",
+        "main": "libs/firebase-data/src/index.ts",
+        "tsConfig": "libs/firebase-data/tsconfig.lib.json",
+        "assets": ["libs/firebase-data/*.md"]
+      }
+    }
+  }
+}

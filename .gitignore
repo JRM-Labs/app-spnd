@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+.dev.vars
+.dev.vars.*
+*.local
+
+# Local agent config and worktrees
+.codex/
+.claude/worktrees/
+.claude/settings.local.json
+
+# Nx and Angular cache
+.nx/cache/
+.nx/workspace-data/
+.nx/migrate-runs/
+.nx/polygraph/
+.angular/
+
+# Build outputs
+dist/
+build/
+tmp/
+temp/
+out/
+
+# Test and coverage output
+coverage/
+test-results/
+playwright-report/
+blob-report/
+__screenshots__/
+
+# Firebase local output
+.firebase/
+firebase-debug.log
+firestore-debug.log
+storage-debug.log
+ui-debug.log
+database-debug.log
+.runtimeconfig.json
+
+# Cloudflare local output
+.wrangler/
+
+# Logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+.idea/
