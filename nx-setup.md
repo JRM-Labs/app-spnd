@@ -66,11 +66,11 @@ After the web app exists:
 
 ```bash
 npm install primeng@^21.1.9 @primeuix/themes@^2.0.3 primeicons @angular/cdk@^21.2.14
-npm install @ngrx/signals@^21.1.1 @ngrx/store@^21.1.1 @ngrx/effects@^21.1.1 @ngrx/entity@^21.1.1 @ngrx/store-devtools@^21.1.1
+npm install @ngrx/signals@^21.1.1 @angular-architects/ngrx-toolkit@^21.0.1 @ngrx/operators@^21.1.1
 npm install firebase @angular/fire zod
 ```
 
-Prefer NgRx Signal Store for feature state. Use classic NgRx Store only for broader cross-route workflows.
+Use NgRx Signal Store and `@angular-architects/ngrx-toolkit` for app state.
 
 ## 7. Establish Boundaries
 
@@ -99,3 +99,5 @@ npx nx format --check
 ```
 
 Add lint, test, and E2E verification once those targets exist.
+
+codex resume 019f6fb9-ffe7-7292-8b19-19d159f8e78b

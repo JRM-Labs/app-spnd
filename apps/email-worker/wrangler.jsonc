@@ -1,0 +1,38 @@
+{
+  "$schema": "../../node_modules/wrangler/config-schema.json",
+  "name": "app-spnd-email-worker",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": false,
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1
+  },
+  "vars": {
+    "ENVIRONMENT": "dev"
+  },
+  "secrets": {
+    "required": ["FIREBASE_INGEST_URL", "INGEST_SHARED_SECRET"]
+  },
+  "env": {
+    "dev": {
+      "name": "app-spnd-email-worker-dev",
+      "vars": {
+        "ENVIRONMENT": "dev"
+      },
+      "secrets": {
+        "required": ["FIREBASE_INGEST_URL", "INGEST_SHARED_SECRET"]
+      }
+    },
+    "prod": {
+      "name": "app-spnd-email-worker-prod",
+      "vars": {
+        "ENVIRONMENT": "prod"
+      },
+      "secrets": {
+        "required": ["FIREBASE_INGEST_URL", "INGEST_SHARED_SECRET"]
+      }
+    }
+  }
+}

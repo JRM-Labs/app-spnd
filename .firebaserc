@@ -1,0 +1,6 @@
+{
+    "projects": {
+      "default": "app-spnd-dev",
+      "dev": "app-spnd-dev"
+    }
+  }
