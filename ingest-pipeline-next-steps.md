@@ -17,23 +17,49 @@ Commit the source and configuration needed to reproduce the current setup:
 
 Do not commit local secrets, `.env` files, generated output, local agent config, or tool caches.
 
-## 2. Persist Raw Email First
+## 2. Resolve Account Ownership
+
+Before storing or parsing an email, resolve the inbound recipient address to the owning family/account. The Storage path alone should not be the source of ownership.
+
+For the current dev pipeline, use a temporary function-side mapping:
+
+```text
+test@app-spnd.jrm-labs.com -> dev-family
+```
+
+Replace this with the Firestore lookup below when signup/family creation exists.
+
+Suggested lookup:
+
+```text
+forwardingAddresses/{normalizedRecipient}
+```
+
+That document should identify the `familyId`, address status, and any future restrictions such as allowed senders. For development, `test@app-spnd.jrm-labs.com` can map to a single dev family, but production should use generated forwarding addresses.
+
+## 3. Persist Raw Email First
 
 Update `ingestEmail` to store the raw email in Firebase Storage before parsing. This keeps the original input replayable while parser logic changes.
 
 Suggested path:
 
 ```text
-raw-emails/{yyyy}/{mm}/{messageId}.eml
+families/{familyId}/raw-emails/{yyyy}/{mm}/{messageId}.eml
 ```
 
-Also create a Firestore metadata document with sender, recipient, subject, content type, byte size, received timestamp, storage path, and status.
+Also create a Firestore metadata document with sender, recipient, subject, content type, byte size, received timestamp, storage path, resolved `familyId`, and status.
 
-## 3. Add Idempotency
+Suggested metadata path:
+
+```text
+families/{familyId}/emailIngests/{messageId}
+```
+
+## 4. Add Idempotency
 
 Extract the email `Message-ID` header when available. If it is missing, generate a deterministic hash from sender, recipient, subject, date, and raw bytes. Use that value as the ingest identity so Cloudflare retries do not create duplicates.
 
-## 4. Build Parser Fixtures
+## 5. Build Parser Fixtures
 
 Save sanitized real emails as parser fixtures. Start with a few known examples such as Apple receipts, then add more merchants as parsing rules mature.
 
@@ -43,11 +69,11 @@ Suggested location:
 libs/parser/src/fixtures/
 ```
 
-## 5. Implement the Parser Library
+## 6. Implement the Parser Library
 
 Build parsing in `libs/parser` and keep the first version narrow. Parse merchant, transaction date, total, currency, document number, and line items when available. Return a normalized result plus warnings for uncertain fields.
 
-## 6. Store Parsed Results
+## 7. Store Parsed Results
 
 Write parsed output to Firestore separately from raw ingest metadata. A practical starting point:
 
@@ -56,7 +82,7 @@ Write parsed output to Firestore separately from raw ingest metadata. A practica
 
 Keep parser failures visible with `needsReview` status instead of dropping data.
 
-## 7. Add the Review UI
+## 8. Add the Review UI
 
 Use the Angular app to show recent ingests, parser status, parsed transaction previews, and records requiring manual review. This should come after raw email persistence so the UI can work against real data.
 

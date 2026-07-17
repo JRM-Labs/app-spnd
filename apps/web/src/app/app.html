@@ -1,2 +1,88 @@
-<app-nx-welcome></app-nx-welcome>
-<router-outlet></router-outlet>
+<main class="page-shell">
+  <section class="hero">
+    <div>
+      <p class="eyebrow">Dev Receipt Feed</p>
+      <h1>{{ title }}</h1>
+      <p class="summary">
+        Temporary dashboard for the live Firebase ingest path. It is reading recent parsed
+        receipts from <code>{{ familyId() }}</code>.
+      </p>
+    </div>
+
+    <button class="refresh-button" type="button" (click)="refresh()" [disabled]="loading()">
+      {{ loading() ? 'Refreshing...' : 'Refresh' }}
+    </button>
+  </section>
+
+  @if (error(); as errorMessage) {
+    <section class="status-panel error-panel">
+      <h2>Load failed</h2>
+      <p>{{ errorMessage }}</p>
+    </section>
+  } @else if (loading()) {
+    <section class="status-panel">
+      <h2>Loading receipts</h2>
+      <p>Pulling the latest parsed emails from the dev function.</p>
+    </section>
+  } @else if (receipts().length === 0) {
+    <section class="status-panel">
+      <h2>No receipts yet</h2>
+      <p>Send another email to <code>test@app-spnd.jrm-labs.com</code> and refresh.</p>
+    </section>
+  } @else {
+    <section class="receipt-grid">
+      @for (receipt of receipts(); track receipt.id) {
+        <article class="receipt-card">
+          <header class="receipt-header">
+            <div>
+              <p class="merchant">{{ receipt.merchant ?? 'Unknown merchant' }}</p>
+              <h2>{{ receipt.subject ?? 'No subject' }}</h2>
+            </div>
+
+            <span class="status-badge" [ngClass]="receipt.status">
+              {{ receipt.status }}
+            </span>
+          </header>
+
+          <dl class="receipt-meta">
+            <div>
+              <dt>Total</dt>
+              <dd>
+                @if (receipt.total !== null && receipt.currency) {
+                  {{ receipt.total | currency: receipt.currency : 'symbol' : '1.2-2' }}
+                } @else {
+                  Unknown
+                }
+              </dd>
+            </div>
+
+            <div>
+              <dt>Purchase date</dt>
+              <dd>{{ receipt.purchaseDateText ?? 'Unknown' }}</dd>
+            </div>
+
+            <div>
+              <dt>Confidence</dt>
+              <dd>{{ receipt.confidence ?? 0 | number: '1.0-2' }}</dd>
+            </div>
+
+            <div>
+              <dt>Created</dt>
+              <dd>{{ receipt.createdAtLabel }}</dd>
+            </div>
+          </dl>
+
+          @if (receipt.warnings?.length) {
+            <div class="warning-list">
+              @for (warning of receipt.warnings; track warning) {
+                <span>{{ warning }}</span>
+              }
+            </div>
+          }
+
+          <p class="preview">{{ receipt.textPreview ?? 'No preview available.' }}</p>
+        </article>
+      }
+    </section>
+  }
+</main>
