@@ -48,6 +48,14 @@ This folder is the planning source of truth before implementation starts.
 
 - [Firebase And Cloudflare Setup Runbook](operations/firebase-cloudflare-setup.md)
 
+## Research
+
+- [Market Viability And Pricing](research/market-viability-and-pricing.md)
+
+## Design
+
+- [Google Stitch UI Design Prompt](design/google-stitch-ui-prompt.md)
+
 ## Decisions To Resolve Before Production
 
 - Final Firebase project IDs for dev and production.
