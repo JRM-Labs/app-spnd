@@ -12,7 +12,7 @@ npx nx report
 
 Expected baseline:
 
-- Node `v20.19.0`
+- Node `v22.23.0`
 - Nx `23.1.0`
 - npm lockfile via `package-lock.json`
 - Installed plugins: `@nx/angular`, `@nx/js`, `@nx/node`, `@nx/playwright`
@@ -65,8 +65,8 @@ Add Nx targets in `project.json` for `dev` and `deploy` using `npx wrangler`.
 After the web app exists:
 
 ```bash
-npm install primeng @primeuix/themes primeicons
-npm install @ngrx/signals @ngrx/store @ngrx/effects @ngrx/entity @ngrx/store-devtools
+npm install primeng@^21.1.9 @primeuix/themes@^2.0.3 primeicons @angular/cdk@^21.2.14
+npm install @ngrx/signals@^21.1.1 @ngrx/store@^21.1.1 @ngrx/effects@^21.1.1 @ngrx/entity@^21.1.1 @ngrx/store-devtools@^21.1.1
 npm install firebase @angular/fire zod
 ```
 
