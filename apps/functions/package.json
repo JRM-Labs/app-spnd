@@ -1,0 +1,10 @@
+{
+  "name": "functions",
+  "version": "0.0.1",
+  "private": true,
+  "type": "commonjs",
+  "main": "./main.js",
+  "dependencies": {
+    "firebase-functions": "^7.3.0"
+  }
+}

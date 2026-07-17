@@ -1,0 +1,35 @@
+{
+  "name": "email-worker",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "apps/email-worker/src",
+  "projectType": "application",
+  "targets": {
+    "build": {
+      "command": "npx wrangler deploy --dry-run --env dev --config apps/email-worker/wrangler.jsonc --outdir dist/apps/email-worker",
+      "dependsOn": ["types"],
+      "outputs": ["{workspaceRoot}/dist/apps/email-worker"]
+    },
+    "dev": {
+      "command": "npx wrangler dev --config apps/email-worker/wrangler.jsonc",
+      "continuous": true
+    },
+    "deploy:dev": {
+      "command": "npx wrangler deploy --env dev --config apps/email-worker/wrangler.jsonc"
+    },
+    "deploy:prod": {
+      "command": "npx wrangler deploy --env prod --config apps/email-worker/wrangler.jsonc"
+    },
+    "lint": {
+      "command": "npx eslint apps/email-worker/src"
+    },
+    "typecheck": {
+      "command": "npx tsc -p apps/email-worker/tsconfig.json --noEmit",
+      "dependsOn": ["types"]
+    },
+    "types": {
+      "command": "npx wrangler types apps/email-worker/worker-configuration.d.ts --config apps/email-worker/wrangler.jsonc",
+      "outputs": ["{projectRoot}/worker-configuration.d.ts"]
+    }
+  },
+  "tags": ["type:app", "scope:edge"]
+}

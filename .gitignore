@@ -5,16 +5,22 @@ node_modules/
 .env
 .env.*
 !.env.example
+.envrc
+.direnv/
 .dev.vars
 .dev.vars.*
 *.local
 
 # Local agent config and worktrees
 .codex/
+.cursor/
+.opencode/
+opencode.json
 .claude/worktrees/
 .claude/settings.local.json
 
 # Nx and Angular cache
+.nx/
 .nx/cache/
 .nx/workspace-data/
 .nx/migrate-runs/
@@ -27,6 +33,7 @@ build/
 tmp/
 temp/
 out/
+*.tsbuildinfo
 
 # Test and coverage output
 coverage/
@@ -43,9 +50,14 @@ storage-debug.log
 ui-debug.log
 database-debug.log
 .runtimeconfig.json
+firebase-export/
+firestore_export/
+storage_export/
+database_export/
 
 # Cloudflare local output
 .wrangler/
+.mf/
 
 # Logs
 *.log
@@ -58,6 +70,3 @@ pnpm-debug.log*
 .DS_Store
 Thumbs.db
 .idea/
-
-.nx/polygraph
-.claude/worktrees
