@@ -89,7 +89,7 @@ Line items belong to the receipt document. They are not independent receipts.
 
 ## Stage 5: Optional AI Assistance
 
-AI may be used to improve extraction from messy or changed Apple receipt formats.
+Gemini is the initial AI-assisted parser provider for MVP-era extraction support. AppSpnd should keep the integration boundary clean enough to allow fallback or secondary providers later if cost, quality, or availability pressures require it.
 
 AI output is candidate data only. It must pass schema validation and reconciliation before being trusted.
 

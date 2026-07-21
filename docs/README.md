@@ -2,6 +2,14 @@
 
 This folder is the planning source of truth before implementation starts.
 
+## GitHub Project
+
+Execution tracking for this repo lives in the linked GitHub Project:
+
+- [AppSpnd MVP](https://github.com/orgs/JRM-Labs/projects/4)
+
+GitHub ProjectV2 boards are owned by the user or organization rather than the repository itself. For `JRM-Labs/app-spnd`, this project is organization-owned and linked from the repo.
+
 ## Recommended Read Order
 
 1. [Product Vision](prd/001-product-vision.md)
@@ -59,10 +67,7 @@ This folder is the planning source of truth before implementation starts.
 ## Decisions To Resolve Before Production
 
 - Final Firebase project IDs for dev and production.
-- Final inbound receipt subdomain.
-- Unknown-recipient policy: drop at Worker level or quarantine in Firebase.
+- Final production domain/subdomain.
 - Raw email retention policy.
 - Whether normalized parser artifacts are stored in all environments or only during development.
-- Angular hosting target.
-- Whether parser execution stays on Cloud Functions or moves to Cloud Run before production.
-- AI parser provider and fallback strategy.
+- How Cloudflare stage and production frontend environments are promoted and operated.

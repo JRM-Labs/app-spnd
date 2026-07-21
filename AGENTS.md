@@ -45,6 +45,15 @@ Current history uses short, imperative commit messages, for example `Add researc
 
 Pull requests should include a brief summary, affected docs or modules, linked issue or decision context when available, and screenshots only for UI-facing changes. Note any unresolved decisions or follow-up work explicitly.
 
+## Project Management
+
+GitHub Projects for this repo are managed through the linked organization-owned ProjectV2 board:
+
+- `AppSpnd MVP`
+- `https://github.com/orgs/JRM-Labs/projects/4`
+
+Use that project as the operational work board for repo planning and delivery. GitHub ProjectV2 objects are owned by the organization, then linked from the repository's `Projects` tab.
+
 
 <!-- nx configuration start-->
 <!-- Leave the start & end comments to automatically receive updates. -->

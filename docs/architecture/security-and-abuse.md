@@ -26,6 +26,7 @@ The Firebase ingest endpoint must:
 - Reject requests without valid signature/secret.
 - Limit request size.
 - Log unknown recipients.
+- Quarantine unknown recipients for later review.
 - Avoid creating families from inbound email.
 - Avoid trusting any family ID in the request body.
 
@@ -94,7 +95,7 @@ Non-admin members may have read-only access initially unless product scope chang
 ## Mitigations
 
 - Unguessable generated addresses.
-- Unknown recipient quarantine/rejection.
+- Unknown recipient quarantine with review workflow.
 - Request size limits.
 - Message hashing and dedupe.
 - Sender/domain checks for Apple receipt parsing.

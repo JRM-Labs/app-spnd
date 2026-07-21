@@ -15,7 +15,7 @@ AppSpnd will not create real mailbox accounts per family. It will generate deter
 Recommended initial path:
 
 ```text
-{familyId}@receipts.jrm-labs.com
+{familyId}@app-spnd.jrm-labs.com
   -> Cloudflare Email Worker
   -> Firebase HTTPS Function
   -> Cloud Storage raw email
@@ -28,7 +28,7 @@ Recommended initial path:
 Each family receives one forwarding address:
 
 ```text
-{familyId}@receipts.jrm-labs.com
+{familyId}@app-spnd.jrm-labs.com
 ```
 
 The address should be stable for the family, stored on the family document, and shown in onboarding/profile screens.
@@ -41,7 +41,7 @@ The address should be stable for the family, stored on the family document, and 
 - Preserve the raw `.eml` or equivalent message payload.
 - Preserve multi-line/folded headers exactly in the raw email artifact.
 - Store enough normalized metadata to find a message without reparsing the full raw file.
-- Reject or quarantine messages that do not map to a known family.
+- Quarantine messages that do not map to a known family for later human or AI review.
 - Avoid trusting client-provided family IDs during ingestion.
 
 ## Raw Email Storage
@@ -101,13 +101,13 @@ The parsed Apple document number should be treated as the strongest receipt-leve
 - Firestore write failure.
 - Parser enqueue failure.
 
-Failures should be observable and recoverable. Unknown recipient messages should not create families automatically.
+Failures should be observable and recoverable. Unknown recipient messages should not create families automatically and should enter a reviewable quarantine flow.
 
 ## Acceptance Criteria
 
 - A generated family address can receive a forwarded receipt.
 - The raw email is saved before parsing.
 - The raw email metadata is linked to the correct family.
-- Unknown recipient emails are rejected or quarantined.
+- Unknown recipient emails are quarantined for review rather than silently dropped.
 - Ingestion is idempotent for repeated webhook delivery.
 - Parser execution can be retried from the stored raw email.

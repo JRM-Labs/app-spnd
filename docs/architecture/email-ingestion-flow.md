@@ -22,7 +22,7 @@ Receive Apple receipt emails at generated family addresses, store the raw email,
 ## Generated Address
 
 ```text
-{familyId}@receipts.jrm-labs.com
+{familyId}@app-spnd.jrm-labs.com
 ```
 
 This address is the routing key. The email recipient maps to the family.
@@ -70,7 +70,8 @@ If no family matches the recipient address:
 
 - Do not parse.
 - Do not create a family.
-- Store in quarantine only if needed for debugging.
+- Store the raw message in quarantine for later human or AI review.
+- Surface the quarantined message in an admin review flow.
 - Emit structured log/alert.
 
 ## Idempotency

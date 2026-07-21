@@ -33,7 +33,7 @@ app-spnd-dev
 Suggested receiving subdomain:
 
 ```text
-receipts.jrm-labs.com
+app-spnd.jrm-labs.com
 ```
 
 The dev environment can receive real forwarded Apple receipts for personal testing, so it must still be treated as sensitive.
@@ -43,6 +43,8 @@ The dev environment can receive real forwarded Apple receipts for personal testi
 Deferred until the MVP path is proven.
 
 Production should use a separate Firebase project, separate Cloudflare routing configuration, separate secrets, and a production-specific receiving domain or subdomain.
+
+The web frontend target for MVP is Cloudflare-hosted delivery with distinct stage and production environments.
 
 ## Environment Separation Rules
 
@@ -96,8 +98,13 @@ Before production exists:
 - Deletion/export story documented.
 - Admin correction workflow implemented.
 
+## Current Direction
+
+- Angular web app hosting target: Cloudflare-hosted frontend with stage and production environments.
+- Parser execution target for MVP and dev: Cloud Functions.
+- Re-evaluate Cloud Run before production only if runtime, concurrency, or cost constraints justify the move.
+
 ## Open Decisions
 
 - Final production domain/subdomain.
-- Whether Angular web app is hosted on Firebase Hosting, Cloudflare Pages, or another platform.
-- Whether parser execution remains Cloud Functions or moves to Cloud Run before production.
+- How Cloudflare stage and production frontend environments are promoted and operated.

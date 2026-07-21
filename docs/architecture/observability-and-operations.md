@@ -77,6 +77,7 @@ Admin/debug workflows eventually needed:
 - Retry parse job.
 - Reprocess raw email with newer parser version.
 - View parse error summary.
+- Review unknown-recipient quarantine items.
 - Reassign receipt/member attribution.
 - Rotate a family forwarding address.
 - Quarantine or block abusive source.

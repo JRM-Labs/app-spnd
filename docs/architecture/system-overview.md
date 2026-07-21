@@ -13,7 +13,7 @@ Angular web app
   -> callable/HTTPS Functions for trusted commands
 
 Cloudflare Email Worker
-  -> receives *@receipts.jrm-labs.com email
+  -> receives *@app-spnd.jrm-labs.com email
   -> forwards raw message to Firebase ingest function
 
 Firebase/GCP
@@ -67,6 +67,7 @@ Firebase/GCP
 - Dashboard.
 - Receipt list/detail.
 - Family members and mappings.
+- Unknown-recipient review/admin workflows.
 - Parser review/admin workflows.
 - Receipt reassignment/correction UI.
 
@@ -77,7 +78,7 @@ Clients are not trusted to write parsed receipt totals, parser output, raw email
 ## MVP Deployment Shape
 
 ```text
-receipts.jrm-labs.com MX
+app-spnd.jrm-labs.com MX
   -> Cloudflare Email Routing / Worker
 
 Firebase project
@@ -87,7 +88,7 @@ Firebase project
   -> Functions
 
 Angular web app
-  -> Firebase Hosting or equivalent web hosting
+  -> Cloudflare-hosted web frontend for stage and production environments
 ```
 
 ## References

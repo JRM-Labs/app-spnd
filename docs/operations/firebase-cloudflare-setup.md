@@ -38,7 +38,7 @@ The instructions are based on current Firebase and Cloudflare documentation chec
 
 ## Assumptions
 
-- Testing domain/subdomain: `receipts.jrm-labs.com`.
+- Testing domain/subdomain: `app-spnd.jrm-labs.com`.
 - Firebase project name: choose during setup, suggested `app-spnd-dev`.
 - Firebase/GCP region: choose once and keep consistent. Suggested `us-central1` for MVP.
 - AppSpnd stores raw emails in Firebase/Google Cloud Storage, not Cloudflare storage.
@@ -241,7 +241,7 @@ Responsibilities:
 1. Verify Cloudflare secret/signature.
 2. Read original recipient address.
 3. Lookup family by `forwardingEmail`.
-4. Reject/quarantine unknown recipients.
+4. Quarantine unknown recipients for later review.
 5. Write raw `.eml` to Cloud Storage.
 6. Write `rawEmails/{rawEmailId}` metadata.
 7. Create `parseJobs/{parseJobId}`.
@@ -273,7 +273,7 @@ Cloudflare Email Routing docs describe routing rules as a pair of an email patte
 Recommended pattern for MVP:
 
 ```text
-*@receipts.jrm-labs.com -> app-spnd-email-ingest Worker
+*@app-spnd.jrm-labs.com -> app-spnd-email-ingest Worker
 ```
 
 If Cloudflare's UI requires routing at the zone/domain level, use a catch-all rule for the selected receiving domain/subdomain and have the Worker validate the recipient.
