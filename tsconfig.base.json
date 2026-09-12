@@ -17,7 +17,8 @@
     "paths": {
       "contracts": ["./libs/contracts/src/index.ts"],
       "parser": ["./libs/parser/src/index.ts"],
-      "firebase-data": ["./libs/firebase-data/src/index.ts"]
+      "firebase-data": ["./libs/firebase-data/src/index.ts"],
+      "auth": ["./libs/auth/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

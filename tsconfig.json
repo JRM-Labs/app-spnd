@@ -6,6 +6,9 @@
       "path": "./apps/functions"
     },
     {
+      "path": "./apps/email-worker"
+    },
+    {
       "path": "./apps/web"
     },
     {
@@ -13,6 +16,9 @@
     },
     {
       "path": "./libs/contracts"
+    },
+    {
+      "path": "./libs/auth"
     },
     {
       "path": "./libs/firebase-data"

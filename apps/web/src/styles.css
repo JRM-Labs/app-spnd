@@ -1,9 +1,12 @@
+@import "tailwindcss" source("./app");
+@import "tailwindcss-primeui";
+
 html,
 body {
   margin: 0;
   min-height: 100%;
   background: #0c1118;
-  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  font-family: "Figtree", "Segoe UI", "Helvetica Neue", sans-serif;
 }
 
 body {

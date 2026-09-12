@@ -2,8 +2,28 @@ rules_version = '2';
 
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /families/dev-family/receipts/{receiptId} {
-      allow read: if true;
+    function isFamilyMember(familyId) {
+      return request.auth != null
+        && exists(/databases/$(database)/documents/families/$(familyId)/userMemberships/$(request.auth.uid));
+    }
+
+    match /users/{userId} {
+      allow read: if request.auth != null && request.auth.uid == userId;
+      allow write: if false;
+    }
+
+    match /families/{familyId} {
+      allow read: if isFamilyMember(familyId);
+      allow write: if false;
+    }
+
+    match /families/{familyId}/{document=**} {
+      allow read: if isFamilyMember(familyId);
+      allow write: if false;
+    }
+
+    match /forwardingAddresses/{address} {
+      allow read, write: if false;
     }
 
     match /{document=**} {

@@ -1,0 +1,33 @@
+<div class="flex flex-col gap-8">
+    <div class="flex flex-col items-center gap-2 text-center">
+        <h1 class="text-surface-900 dark:text-surface-0 text-2xl font-semibold leading-tight">Verify your email</h1>
+        <p class="text-surface-700 dark:text-surface-200 leading-normal">We sent a verification link to your inbox. Open it, then come back here to finish setting up your receipt-forwarding address.</p>
+    </div>
+
+    @if (authStore.authValue(); as result) {
+        @if (result.kind === 'familyProvisioned') {
+            <div class="flex flex-col gap-2 rounded-lg bg-primary-50 p-4 text-center dark:bg-primary-950">
+                <p class="text-surface-900 dark:text-surface-0 font-medium">Your forwarding address is ready</p>
+                <code class="break-all text-primary font-semibold">{{ result.forwardingAddress }}</code>
+                <p class="text-surface-700 dark:text-surface-200 text-sm">Forward email receipts to this address to add them to your household.</p>
+            </div>
+        } @else if (result.kind === 'verificationPending') {
+            <p class="text-center text-surface-700 dark:text-surface-200 text-sm">Your email is not verified yet. Check your inbox, including spam, and try again.</p>
+        }
+    }
+
+    @if (authStore.authError(); as error) {
+        <p class="text-center text-red-500 text-sm">{{ error.message || 'We could not complete verification. Please try again.' }}</p>
+    }
+
+    <div class="flex flex-col gap-3">
+        <button pButton type="button" [loading]="authStore.authIsLoading()" (click)="checkVerification()" class="w-full py-2 rounded-lg">
+            <span pButtonLabel>I've verified my email</span>
+        </button>
+        <button pButton type="button" severity="secondary" [disabled]="authStore.authIsLoading()" (click)="resend()" class="w-full py-2 rounded-lg">
+            <span pButtonLabel>Resend verification email</span>
+        </button>
+    </div>
+
+    <a routerLink="/auth/login" class="text-primary font-medium text-center hover:text-primary-emphasis">Back to sign in</a>
+</div>

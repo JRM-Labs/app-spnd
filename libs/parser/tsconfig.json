@@ -3,6 +3,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "moduleResolution": "node",
+    "composite": true,
+    "declaration": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "importHelpers": true,
